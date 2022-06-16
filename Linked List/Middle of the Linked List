@@ -27,7 +27,7 @@ Approach 2 -
  ListNode* middleNode(ListNode* head) {
         ListNode* first = head, *second = head;
         
-        
+        // Here Need some important comment on &&  
         while(second != NULL && second->next!=NULL){
             first = first->next;
             second = second->next->next;

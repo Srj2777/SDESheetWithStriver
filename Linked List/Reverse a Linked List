@@ -1,6 +1,7 @@
 Given the head of a singly linked list, reverse the list, and return the reversed list.
 
- 
+Approach 1 (Iterative) - Using three pointer
+
 ListNode* reverseList(ListNode* head) {
     if(head==NULL || head->next==NULL)
         return head;
@@ -14,3 +15,34 @@ ListNode* reverseList(ListNode* head) {
     }
     return prev;
  }
+ 
+ Approach 2 (Recursive) - Approach is very similar as 3 pointer approach 
+ 
+ ListNode* reverseList(ListNode* head) {
+    if(head==NULL || head->next==NULL)
+        return head;
+    
+    ListNode *prev = NULL;
+    while(curr!=NULL){
+        ListNode *temp = head->next;
+        head->next=prev;
+        prev = head;
+        head = temp;
+    }
+    return prev;
+ }
+ 
+ 
+  Approach 3 (Recursion) -
+  
+  ListNode* reverseList(ListNode* head) {
+    if(head==NULL || head->next==NULL)
+        return head;
+    
+    ListNode* node = reverseList(head->next);
+    head->next->next = head;
+    head->next= NULL;
+    return node;
+ }
+ 
+ 

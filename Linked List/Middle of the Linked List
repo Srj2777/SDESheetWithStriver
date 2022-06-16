@@ -1,0 +1,36 @@
+Approach 1 -(Iterative) Count total no of node using pointer and traverse (Count/2) and stop using pointer and return the pointer;
+
+class Solution {
+public:
+	ListNode* middleNode(ListNode* head) {
+    	int n = 0;
+    	ListNode* temp = head;
+    	while(temp) {
+        	n++;
+        		temp = temp->next;
+    	}
+   	 
+    	temp = head;
+   	 
+    	for(int i = 0; i < n / 2; i++) {
+        		temp = temp->next;
+    	}
+   	 
+    	return temp;
+	}
+};
+
+
+
+Approach 2 - 
+
+ ListNode* middleNode(ListNode* head) {
+        ListNode* first = head, *second = head;
+        
+        
+        while(second != NULL && second->next!=NULL){
+            first = first->next;
+            second = second->next->next;
+        }
+        return first;
+}

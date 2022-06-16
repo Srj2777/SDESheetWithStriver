@@ -19,7 +19,8 @@ public:
     	return temp;
 	}
 };
-
+ TC - O(N) + O(N/2)
+ SC - O(1)
 
 
 Approach 2 - 
@@ -34,3 +35,6 @@ Approach 2 -
         }
         return first;
 }
+
+TC - O(N/2)
+ SC - O(1)

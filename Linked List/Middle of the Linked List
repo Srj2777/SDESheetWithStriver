@@ -28,7 +28,8 @@ Approach 2 -
  ListNode* middleNode(ListNode* head) {
         ListNode* first = head, *second = head;
         
-        // Here Need some important comment on &&  
+        // Here && use if first if true then check second condition,both condition must be true.... 
+	//if both condition will true then loop run otherwise it return first...
         while(second != NULL && second->next!=NULL){
             first = first->next;
             second = second->next->next;

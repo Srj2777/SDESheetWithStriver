@@ -18,3 +18,25 @@ It is guaranteed that the node to be deleted is not a tail node in the list.
         delete temp;
 
 It's Time Complexity - O(1)
+
+
+
+IF HEAD IS GIVEN THEN ......
+
+        if(head==NULL) return head;
+        
+        if(head->data==node->data){
+            Node* temp = head->next;
+            delete head;
+            return temp;
+        }
+        ListNode* curr = head;
+        while(curr!=NULL){
+            if(curr->next->data==node->data){
+                ListNode* node = curr->next;
+                curr->next->next = curr->next;
+                delete node;
+            }
+            curr = curr->next;
+        }
+        return head;

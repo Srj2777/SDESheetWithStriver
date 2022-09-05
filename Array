@@ -1,0 +1,73 @@
+Array Problem 3Sum Leetcode:- Using hashmap , set and etc;
+
+Using HashMap:-
+
+vector<vector<int>> threeSum(vector<int>& arr) {
+        set<vector<int>>s;   // bcz we don't need duplicates
+        vector<vector<int>>ans;
+        
+        unordered_map<int,int>mp;
+        sort(arr.begin(),arr.end());
+        int n = arr.size();
+        for(int i=0; i<n;i++)
+            mp[arr[i]]++;
+        
+        for(int i=0; i<n-2; i++){
+            mp[arr[i]]--;
+            for(int j=i+1; j<n-1;j++){
+                mp[arr[j]]--;
+                if(mp.find(-(arr[i]+arr[j]))!=mp.end() and mp[-(arr[i]+arr[j])]!=0){
+                    vector<int>temp;
+                    temp.push_back(arr[i]);
+                    temp.push_back(arr[j]);
+                    temp.push_back(-(arr[i]+arr[j]));
+                    sort(temp.begin(),temp.end());
+                    s.insert(temp);
+                }
+                mp[arr[j]]++;
+            }
+            mp[arr[i]]++;
+        }
+        for(auto i:s){
+            ans.push_back(i);
+        }
+        return ans;
+    }
+    TC - O(N^2 * logN);
+    SC - O(N) + O(M);  // M for triplates and N for hashmap
+
+    Optimal Solution:-
+    vector<vector<int>>ans;
+        int n = arr.size();
+        sort(arr.begin(),arr.end());
+        for(int i=0; i<n-2;i++){
+            if(i==0 || arr[i]!=arr[i-1]){
+                int l = i+1, h = n-1,target = -arr[i];
+                while(l<h){
+                    int sum = arr[l] + arr[h];
+                    if(sum==target){
+                        vector<int>temp;
+                        temp.push_back(arr[i]);
+                        temp.push_back(arr[l]);
+                        temp.push_back(arr[h]);
+                        ans.push_back(temp);
+
+                        while(l<h and arr[l] == arr[l+1]) l++;
+                        while(l<h and arr[h] == arr[h-1]) h--;
+
+                        l++;
+                        h--;
+                    }
+                    else if(sum<target)
+                        l++;
+                    else 
+                        h--;
+                }
+            }
+        }
+        return ans;
+        
+        TC - O(N*N);
+        SC - O(1) or O(M)  , here M is triplates
+    
+    
